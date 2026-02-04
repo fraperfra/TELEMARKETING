@@ -1,25 +1,35 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import twilio from 'twilio';
 import OpenAI from 'openai';
+import config from './config';
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = config.port;
 
-app.use(cors());
+app.use(cors(config.cors));
 app.use(express.json());
 
 const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
+  config.twilio.accountSid,
+  config.twilio.authToken
 );
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: config.openai.apiKey,
+});
+
+// Health check
+app.get('/api/health', (req: Request, res: Response) => {
+  res.json({ 
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    environment: config.nodeEnv
+  });
 });
 
 // Email notifications
-app.post('/api/notifications/email', async (req, res) => {
+app.post('/api/notifications/email', async (req: Request, res: Response) => {
   try {
     const { to, template, data } = req.body;
     
@@ -34,12 +44,12 @@ app.post('/api/notifications/email', async (req, res) => {
 });
 
 // SMS notifications
-app.post('/api/notifications/sms', async (req, res) => {
+app.post('/api/notifications/sms', async (req: Request, res: Response) => {
   try {
     const { to, message } = req.body;
 
     await twilioClient.messages.create({
-      from: process.env.TWILIO_PHONE_NUMBER,
+      from: config.twilio.phoneNumber,
       to,
       body: message,
     });
@@ -52,7 +62,7 @@ app.post('/api/notifications/sms', async (req, res) => {
 });
 
 // Create alert for user/organization
-app.post('/api/alerts', async (req, res) => {
+app.post('/api/alerts', async (req: Request, res: Response) => {
   try {
     const { user_id, organization_id, type, title, message, action_url } = req.body;
     
@@ -70,7 +80,7 @@ app.post('/api/alerts', async (req, res) => {
 });
 
 // Create reminder for user
-app.post('/api/reminders', async (req, res) => {
+app.post('/api/reminders', async (req: Request, res: Response) => {
   try {
     const { user_id, title, description, scheduled_for, type, contact_id } = req.body;
     
@@ -88,7 +98,7 @@ app.post('/api/reminders', async (req, res) => {
 });
 
 // Send push notification (Browser Push API)
-app.post('/api/notifications/push', async (req, res) => {
+app.post('/api/notifications/push', async (req: Request, res: Response) => {
   try {
     const { subscription, title, body, icon, badge, tag } = req.body;
     
@@ -103,7 +113,7 @@ app.post('/api/notifications/push', async (req, res) => {
 });
 
 // AI Analysis
-app.post('/api/ai/analyze-call', async (req, res) => {
+app.post('/api/ai/analyze-call', async (req: Request, res: Response) => {
   try {
     const { transcript } = req.body;
 
@@ -131,5 +141,7 @@ app.post('/api/ai/analyze-call', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`API server running on port ${port}`);
+  console.log(`✅ API server running on port ${port}`);
+  console.log(`🌍 Environment: ${config.nodeEnv}`);
+  console.log(`🔐 CORS Origin: ${config.cors.origin}`);
 });
