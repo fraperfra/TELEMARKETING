@@ -27,29 +27,25 @@ export interface Appointment {
 
 export interface Owner {
   id: string;
+  organization_id?: string;
   firstName: string;
   lastName: string;
-  taxCode: string;
-  birthDate: string;
-  age: number;
-  phones: string[];
-  email: string;
+  taxCode?: string;
+  birthDate?: string;
+  age?: number;
+  phones?: string[];
+  phone?: string;
+  email?: string;
   temperature: LeadTemperature;
   score: number;
-  propertiesCount: number;
-  lastContact: string;
-  suggestedAction: string;
-  tags: string[];
-  properties: Property[];
-  calls: CallLog[];
-  appointments: Appointment[];
-}
-
-export type ViewState = 'DASHBOARD' | 'OWNERS_LIST' | 'OWNER_DETAIL' | 'CALENDAR' | 'UPLOAD' | 'SETTINGS';
-
-export type ModalType = 'ADD_OWNER' | 'CALL_OWNER' | 'ADD_APPOINTMENT' | 'EDIT_OWNER' | 'BULK_CALL' | null;
-
-export interface ModalState {
-  type: ModalType;
-  owner?: Owner;
-}
+  propertiesCount?: number;
+  lastContact?: string;
+  suggestedAction?: string;
+  tags?: string[];
+  properties?: Property[];
+  calls?: CallLog[];
+  appointments?: Appointment[];
+  address?: string;
+  notes?: string;
+  created_at?: string;
+  updated_at?: string;

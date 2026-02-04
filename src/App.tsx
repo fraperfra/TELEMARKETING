@@ -14,6 +14,7 @@ import CalendarPage from '@/pages/CalendarPage';
 import CampaignsPage from '@/pages/CampaignsPage';
 import DialerPage from '@/pages/DialerPage';
 import SettingsPage from '@/pages/SettingsPage';
+import { OwnersListPage } from '@/pages/OwnersManagementPage';
 
 // Layout
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -59,6 +60,7 @@ function App() {
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="dialer" element={<DialerPage />} />
+            <Route path="owners" element={<OwnersListPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
 

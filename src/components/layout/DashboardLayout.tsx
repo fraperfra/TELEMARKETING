@@ -13,6 +13,7 @@ import {
   X,
   ChevronLeft,
   User,
+  Users,
 } from 'lucide-react';
 import { AlertsDropdown } from '@/components/notifications/AlertsDropdown';
 
@@ -21,6 +22,7 @@ const navigation = [
   { name: 'Calendario', href: '/calendar', icon: Calendar },
   { name: 'Campagne', href: '/campaigns', icon: Megaphone },
   { name: 'Dialer', href: '/dialer', icon: Phone },
+  { name: 'Proprietari', href: '/owners', icon: Users },
   { name: 'Impostazioni', href: '/settings', icon: Settings },
 ];
 
