@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Phone, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
@@ -41,9 +40,9 @@ export function HotLeadsList({ leads }: { leads: HotLead[] }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <p className="font-semibold truncate">{lead.name}</p>
-              <Badge variant="default" className="bg-orange-500">
+              <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full font-medium">
                 {lead.last_score}/100
-              </Badge>
+              </span>
             </div>
             <p className="text-sm text-gray-600 truncate">
               {lead.property_type} • {lead.campaigns.name}

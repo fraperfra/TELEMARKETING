@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
@@ -224,7 +224,7 @@ export function OwnersListPage() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="p-6 space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>

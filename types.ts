@@ -48,4 +48,13 @@ export interface Owner {
   address?: string;
   notes?: string;
   created_at?: string;
-  updated_at?: string;
+  updated_at?: string;}
+
+export type ViewState = 'DASHBOARD' | 'OWNERS_LIST' | 'OWNER_DETAIL' | 'CALENDAR' | 'UPLOAD' | 'SETTINGS';
+
+export type ModalType = 'ADD_OWNER' | 'CALL_OWNER' | 'ADD_APPOINTMENT' | 'EDIT_OWNER' | 'BULK_CALL' | null;
+
+export interface ModalState {
+  type: ModalType;
+  owner?: Owner;
+}

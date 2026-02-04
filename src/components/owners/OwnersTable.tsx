@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Owner } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -129,7 +129,7 @@ export function OwnersTable({
                   <input
                     type="checkbox"
                     checked={selectedIds.size === owners.length && owners.length > 0}
-                    onChange={(e) => onSelectAll(e.target.checked)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => onSelectAll(e.target.checked)}
                     className="rounded"
                   />
                 </TableHead>
@@ -149,7 +149,7 @@ export function OwnersTable({
                     <input
                       type="checkbox"
                       checked={selectedIds.has(owner.id)}
-                      onChange={(e) => onSelectOne(owner.id, e.target.checked)}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => onSelectOne(owner.id, e.target.checked)}
                       className="rounded"
                     />
                   </TableCell>
@@ -166,9 +166,9 @@ export function OwnersTable({
                   )}
                   {visibleColumns.has('temperature') && (
                     <TableCell>
-                      <Badge className={temperatureColors[owner.temperature]}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${temperatureColors[owner.temperature]}`}>
                         {temperatureLabels[owner.temperature]}
-                      </Badge>
+                      </span>
                     </TableCell>
                   )}
                   {visibleColumns.has('score') && (

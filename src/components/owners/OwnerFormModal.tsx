@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { Owner } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -26,7 +26,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
     notes: owner?.notes || '',
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await onSave(formData);
     onClose();
@@ -54,7 +54,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                   type="text"
                   required
                   value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, firstName: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -66,7 +66,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                   type="text"
                   required
                   value={formData.lastName}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, lastName: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -78,7 +78,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                 <input
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -87,7 +87,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                 <input
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -99,7 +99,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                 <input
                   type="text"
                   value={formData.taxCode}
-                  onChange={(e) => setFormData({ ...formData, taxCode: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, taxCode: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -108,7 +108,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                 <input
                   type="date"
                   value={formData.birthDate}
-                  onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, birthDate: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -119,7 +119,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
               <input
                 type="text"
                 value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, address: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -129,7 +129,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                 <label className="block text-sm font-medium text-gray-700 mb-1">Temperatura</label>
                 <select
                   value={formData.temperature}
-                  onChange={(e) =>
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                     setFormData({ ...formData, temperature: e.target.value as 'HOT' | 'WARM' | 'COLD' })
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -148,7 +148,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
                   min="0"
                   max="100"
                   value={formData.score}
-                  onChange={(e) => setFormData({ ...formData, score: parseInt(e.target.value) })}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, score: parseInt(e.target.value) })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -158,7 +158,7 @@ export function OwnerFormModal({ owner, isOpen, onClose, onSave, loading }: Owne
               <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
               <textarea
                 value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, notes: e.target.value })}
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

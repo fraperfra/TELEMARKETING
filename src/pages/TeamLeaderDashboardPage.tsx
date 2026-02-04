@@ -307,14 +307,13 @@ export default function TeamLeaderDashboardPage() {
                   <TableCell>{agent.qualified}</TableCell>
                   <TableCell>{agent.appointments}</TableCell>
                   <TableCell>
-                    <Badge
-                      variant={agent.conversion > 30 ? 'default' : 'secondary'}
-                      className={
-                        agent.conversion > 30 ? 'bg-green-500' : ''
-                      }
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        agent.conversion > 30 ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                      }`}
                     >
                       {agent.conversion}%
-                    </Badge>
+                    </span>
                   </TableCell>
                   <TableCell>{agent.avgScore}/100</TableCell>
                 </TableRow>

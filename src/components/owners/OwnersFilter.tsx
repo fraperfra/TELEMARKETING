@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Search, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -60,7 +60,7 @@ export function OwnersFilter({ filters, onFiltersChange }: OwnersFilterProps) {
               type="text"
               placeholder="Cerca per nome, email o telefono..."
               value={filters.search}
-              onChange={(e) => handleSearchChange(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchChange(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -121,7 +121,7 @@ export function OwnersFilter({ filters, onFiltersChange }: OwnersFilterProps) {
                     min="0"
                     max="100"
                     value={filters.scoreMin}
-                    onChange={(e) => handleScoreMinChange(Number(e.target.value))}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleScoreMinChange(Number(e.target.value))}
                     className="w-full"
                   />
                   <input
@@ -129,7 +129,7 @@ export function OwnersFilter({ filters, onFiltersChange }: OwnersFilterProps) {
                     min="0"
                     max="100"
                     value={filters.scoreMax}
-                    onChange={(e) => handleScoreMaxChange(Number(e.target.value))}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleScoreMaxChange(Number(e.target.value))}
                     className="w-full"
                   />
                 </div>
